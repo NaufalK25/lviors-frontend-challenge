@@ -11,5 +11,21 @@
 }
 
 .nav-link {
-  @apply hover:bg-gray-400 rounded-lg p-2 w-full flex justify-center;
+  @apply hover:bg-gray-400 focus:bg-gray-400 rounded-lg p-2 w-full flex justify-center outline-none;
+}
+
+.loading {
+  animation: 0.25s linear 0s loading;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
 }

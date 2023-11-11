@@ -12,27 +12,33 @@ import './index.css';
 const router = createBrowserRouter([
   {
     path: '/login',
-    element: <LoginPage />
+    element: <LoginPage />,
+    errorElement: <LoginPage />
   },
   {
     path: '/register',
-    element: <RegisterPage />
+    element: <RegisterPage />,
+    errorElement: <RegisterPage />
   },
   {
     path: '/',
-    element: <HomePage />
+    element: <HomePage />,
+    errorElement: <HomePage />
   },
   {
     path: '/user',
-    element: <UserPage />
+    element: <UserPage />,
+    errorElement: <HomePage />
   },
   {
     path: '/change-password',
-    element: <ChangePasswordPage />
+    element: <ChangePasswordPage />,
+    errorElement: <HomePage />
   },
   {
     path: '/post',
-    element: <PostPage />
+    element: <PostPage />,
+    errorElement: <HomePage />
   }
 ]);
 
