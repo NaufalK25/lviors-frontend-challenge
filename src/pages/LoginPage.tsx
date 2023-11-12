@@ -4,7 +4,7 @@ import AuthBtn from '../components/AuthBtn';
 import Input from '../components/Input';
 import useGuard from '../hooks/useGuard';
 import { login } from '../utils/auth';
-import { LoginError, User } from '../types/auth';
+import { LoggedInUser } from '../types/user';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const LoginPage = () => {
@@ -13,7 +13,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<LoginError>({});
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleLoginFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,23 +25,9 @@ const LoginPage = () => {
     const username = usernameInput.value;
 
     if (!username.length) {
-      setError(prevState => {
-        if (Object.keys(prevState).includes('username')) {
-          prevState.username = 'Username harus diisi';
-
-          return prevState;
-        } else {
-          return {
-            ...prevState,
-            username: 'Username harus diisi'
-          };
-        }
-      });
+      setUsernameError(true);
     } else {
-      setError(prevState => {
-        prevState.username = undefined;
-        return prevState;
-      });
+      setUsernameError(false);
     }
 
     const passwordInputDiv = event.currentTarget.children[2] as HTMLDivElement;
@@ -48,29 +35,16 @@ const LoginPage = () => {
     const password = passwordInput.value;
 
     if (!password.length) {
-      setError(prevState => {
-        if (Object.keys(prevState).includes('password')) {
-          prevState.password = 'Password harus diisi';
-
-          return prevState;
-        } else {
-          return {
-            ...prevState,
-            password: 'Password harus diisi'
-          };
-        }
-      });
+      setPasswordError(true);
     } else {
-      setError(prevState => {
-        prevState.password = undefined;
-        return prevState;
-      });
+      setPasswordError(false);
     }
 
     try {
       setLoading(true);
+
       const response = await login(username, password);
-      const responseData: User = response.data;
+      const responseData: LoggedInUser = response.data;
       const user = responseData.data.token;
 
       window.localStorage.setItem('user', user);
@@ -84,20 +58,22 @@ const LoginPage = () => {
 
   return (
     <>
-      {loading && <div className='bg-primary h-2 loading'></div>}
+      {loading && <div className='bg-teal-300 h-2 loading'></div>}
       <main className='flex justify-center items-center h-screen'>
         <form
           onSubmit={event => handleLoginFormSubmit(event)}
-          className='w-[50vw] flex flex-col justify-center items-center border border-primary rounded p-10 gap-y-8'
+          className='w-[50vw] flex flex-col justify-center items-center border border-teal-300 rounded p-10 gap-y-8'
         >
           <p className='text-xl'>Login</p>
           <Input
-            error={error}
+            error={usernameError}
+            setError={setUsernameError}
             type='text'
             field='username'
           />
           <Input
-            error={error}
+            error={passwordError}
+            setError={setPasswordError}
             type='password'
             field='password'
           />
@@ -105,7 +81,7 @@ const LoginPage = () => {
             <AuthBtn text='Login' />
             <Link
               to='/register'
-              className='hover:underline text-primary outline-primary p-1 rounded'
+              className='hover:underline text-teal-300 outline-teal-300 p-1 rounded'
             >
               Register
             </Link>

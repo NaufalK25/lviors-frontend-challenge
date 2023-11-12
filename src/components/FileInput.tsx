@@ -3,7 +3,7 @@ import { Image as ImageIcon } from 'react-feather';
 const FileInput = () => {
   const handlePreviewImageChange = (event: React.FormEvent) => {
     const fileInput = event.currentTarget.firstChild as HTMLInputElement;
-    if (fileInput.files && fileInput.files[0]) {
+    if (fileInput.files) {
       const filePath = URL.createObjectURL(fileInput.files[0]);
 
       const templatePreviewImage = event.currentTarget.lastChild as HTMLElement;

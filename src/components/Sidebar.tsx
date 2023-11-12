@@ -1,45 +1,27 @@
 import { Home as HomeIcon } from 'react-feather';
-import { NavLink } from 'react-router-dom';
+import NavbarLink from './NavbarLink';
 import LogoutBtn from './LogoutBtn';
 
 const Sidebar = () => {
   return (
     <div className='flex flex-col justify-between h-screen w-[20%] p-4 bg-gray-200'>
       <div className='flex flex-col items-center gap-y-5'>
-        <NavLink
+        <NavbarLink
           to='/'
-          className={({ isActive }) =>
-            `${isActive ? 'bg-primary hover:bg-primary focus:bg-primary' : ''} nav-link`
-          }
-        >
-          <div className='py-0.5'>
-            <HomeIcon />
-          </div>
-        </NavLink>
-        <NavLink
+          innerHtml={<HomeIcon />}
+        />
+        <NavbarLink
           to='/user'
-          className={({ isActive }) =>
-            `${isActive ? 'bg-primary hover:bg-primary focus:bg-primary' : ''} nav-link`
-          }
-        >
-          <p className='py-0.5'>User</p>
-        </NavLink>
-        <NavLink
+          innerHtml={<p className='py-0.5'>User</p>}
+        />
+        <NavbarLink
           to='/change-password'
-          className={({ isActive }) =>
-            `${isActive ? 'bg-primary hover:bg-primary focus:bg-primary' : ''} nav-link`
-          }
-        >
-          <p className='py-0.5'>Change Password</p>
-        </NavLink>
-        <NavLink
+          innerHtml={<p className='py-0.5'>Change Password</p>}
+        />
+        <NavbarLink
           to='/post'
-          className={({ isActive }) =>
-            `${isActive ? 'bg-primary hover:bg-primary focus:bg-primary' : ''} nav-link`
-          }
-        >
-          <p className='py-0.5'>Post</p>
-        </NavLink>
+          innerHtml={<p className='py-0.5'>Post</p>}
+        />
       </div>
       <LogoutBtn />
     </div>
