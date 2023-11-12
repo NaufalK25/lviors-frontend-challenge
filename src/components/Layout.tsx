@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
 import { ToastContainer } from 'react-toastify';
+import Sidebar from './Sidebar';
 
 export type OutletContext = React.Dispatch<React.SetStateAction<boolean>>;
 

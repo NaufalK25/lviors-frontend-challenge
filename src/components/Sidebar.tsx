@@ -1,7 +1,7 @@
 import { Home as HomeIcon } from 'react-feather';
 import { Sidebar as FBSidebar } from 'flowbite-react';
-import NavbarLink from './NavbarLink';
 import LogoutBtn from './LogoutBtn';
+import NavbarLink from './NavbarLink';
 
 const Sidebar = () => {
   return (

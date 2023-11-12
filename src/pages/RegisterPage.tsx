@@ -10,7 +10,6 @@ import { register } from '../utils/auth';
 import { createErrorToast, createSuccessToast } from '../utils/toast';
 import { validate } from '../utils/validate';
 import { ErrorData } from '../types/error';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const RegisterPage = () => {
   useGuard(true);

@@ -2,13 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.loading {
+  animation: 0.25s linear 0s loading;
+}
+
 .nav-link {
   @apply hover:bg-gray-400 focus:bg-gray-400 rounded-lg p-2 w-full flex justify-center outline-none;
 }
 
-.loading {
-  animation: 0.25s linear 0s loading;
+.rounded-btn {
+  @apply rounded-full;
 }
+
 
 @keyframes loading {
   0% {

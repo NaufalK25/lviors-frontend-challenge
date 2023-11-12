@@ -9,6 +9,7 @@ import PostPage from './pages/PostPage';
 import RegisterPage from './pages/RegisterPage';
 import UserPage from './pages/UserPage';
 import './index.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const router = createBrowserRouter([
   {

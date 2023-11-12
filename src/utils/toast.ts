@@ -15,6 +15,10 @@ export const createSuccessToast = (message: string) => {
   toast.success(message, basicOptionToast);
 };
 
+export const createInfoToast = (message: string) => {
+  toast.info(message, basicOptionToast);
+};
+
 export const createErrorToast = (message: string) => {
   toast.error(message, basicOptionToast);
 };
