@@ -1,11 +1,15 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import AuthBtn from '../components/AuthBtn';
 import Input from '../components/Input';
 import FileInput from '../components/FileInput';
 import useGuard from '../hooks/useGuard';
 import { register } from '../utils/auth';
+import { createErrorToast, createSuccessToast } from '../utils/toast';
 import { validate } from '../utils/validate';
+import { ErrorData } from '../types/error';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const RegisterPage = () => {
@@ -53,8 +57,17 @@ const RegisterPage = () => {
       });
 
       navigate('/login');
+      setTimeout(() => {
+        createSuccessToast('Successfully created new user!');
+      }, 1);
     } catch (err) {
-      console.log(err);
+      if (err) {
+        const axiosError = err as AxiosError;
+        if (axiosError.response) {
+          const axiosErrorData = axiosError.response.data as ErrorData;
+          createErrorToast(axiosErrorData.message.split(', ')[0]);
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -62,6 +75,7 @@ const RegisterPage = () => {
 
   return (
     <div className='relative'>
+      <ToastContainer />
       {loading && (
         <div className='absolute left-0 top-0 bg-blue-700 h-2 loading'></div>
       )}
@@ -103,7 +117,10 @@ const RegisterPage = () => {
           />
           <FileInput />
           <div className='flex flex-col w-full justify-center items-center gap-y-4'>
-            <AuthBtn type='submit' text='Register' />
+            <AuthBtn
+              type='submit'
+              text='Register'
+            />
             <Link
               to='/login'
               className='hover:underline text-blue-700 outline-blue-700 p-1 rounded'

@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { Button } from 'flowbite-react';
@@ -7,8 +8,10 @@ import Input from '../components/Input';
 import { OutletContext } from '../components/Layout';
 import useGuard from '../hooks/useGuard';
 import useUserProfile from '../hooks/useUserProfile';
+import { createErrorToast, createSuccessToast } from '../utils/toast';
 import { updateProfile } from '../utils/user';
 import { validate } from '../utils/validate';
+import { ErrorData } from '../types/error';
 
 const UserPage = () => {
   useGuard(false);
@@ -49,8 +52,15 @@ const UserPage = () => {
         email,
         photo: userProfile ? userProfile.photo : ''
       });
+      createSuccessToast('Successfully update user!');
     } catch (err) {
-      console.log(err);
+      if (err) {
+        const axiosError = err as AxiosError;
+        if (axiosError.response) {
+          const axiosErrorData = axiosError.response.data as ErrorData;
+          createErrorToast(axiosErrorData.message.split(', ')[0]);
+        }
+      }
     } finally {
       setLoading(false);
       setFormDisabled(true);

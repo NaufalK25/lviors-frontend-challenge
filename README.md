@@ -1,6 +1,6 @@
 # Lviors Frontend Challenge
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/efd06e97-297f-4574-bf12-85eac7d09770/deploy-status)](https://app.netlify.com/sites/magenta-flan-f7af16/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/efd06e97-297f-4574-bf12-85eac7d09770/deploy-status)](https://app.netlify.com/sites/lviors-frontend-challenge/deploys)
 
 Challenge given by Lviors as a recruitment test for the Frontend Developer role.
 

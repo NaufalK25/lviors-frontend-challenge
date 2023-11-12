@@ -1,11 +1,14 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import AuthBtn from '../components/AuthBtn';
 import Input from '../components/Input';
 import { OutletContext } from '../components/Layout';
 import useGuard from '../hooks/useGuard';
+import { createErrorToast, createSuccessToast } from '../utils/toast';
 import { changePassword } from '../utils/user';
 import { validate } from '../utils/validate';
+import { ErrorData } from '../types/error';
 
 const ChangePasswordPage = () => {
   useGuard(false);
@@ -42,12 +45,22 @@ const ChangePasswordPage = () => {
         newPassword,
         confirmNewPassword
       });
+
+      createSuccessToast('Successfully change password!');
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     } catch (err) {
-      console.log(err);
+      if (err) {
+        const axiosError = err as AxiosError;
+        if (axiosError.response) {
+          const axiosErrorData = axiosError.response.data as ErrorData;
+          createErrorToast(axiosErrorData.message.split(', ')[0]);
+        }
+      }
     } finally {
       setLoading(false);
-
-      window.location.reload();
     }
   };
 

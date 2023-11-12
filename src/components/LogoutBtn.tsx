@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { LogOut as LogoutIcon } from 'react-feather';
 import { logout } from '../utils/auth';
+import { createSuccessToast } from '../utils/toast';
 
 const LogoutBtn = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const LogoutBtn = () => {
       await logout();
       window.localStorage.removeItem('user');
       navigate('/login');
+      setTimeout(() => {
+        createSuccessToast('Successfully logged out!');
+      }, 1);
     } catch (err) {
       console.log(err);
     }

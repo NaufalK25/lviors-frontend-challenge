@@ -1,10 +1,14 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import AuthBtn from '../components/AuthBtn';
 import Input from '../components/Input';
 import useGuard from '../hooks/useGuard';
 import { login } from '../utils/auth';
+import { createErrorToast, createSuccessToast } from '../utils/toast';
 import { validate } from '../utils/validate';
+import { ErrorData } from '../types/error';
 import { LoggedInUser } from '../types/user';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -38,8 +42,17 @@ const LoginPage = () => {
 
       window.localStorage.setItem('user', user);
       navigate('/');
+      setTimeout(() => {
+        createSuccessToast('Successfully logged in!');
+      }, 1);
     } catch (err) {
-      console.log(err);
+      if (err) {
+        const axiosError = err as AxiosError;
+        if (axiosError.response) {
+          const axiosErrorData = axiosError.response.data as ErrorData;
+          createErrorToast(axiosErrorData.message.split(', ')[0]);
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -47,6 +60,7 @@ const LoginPage = () => {
 
   return (
     <div className='relative'>
+      <ToastContainer />
       {loading && (
         <div className='absolute left-0 top-0 bg-blue-700 h-2 loading'></div>
       )}

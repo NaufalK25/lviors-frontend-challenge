@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import { ToastContainer } from 'react-toastify';
 
 export type OutletContext = React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -9,6 +10,7 @@ const Layout = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className='relative'>
         {loading && (
           <div className='bg-blue-700 h-2 loading absolute top-0 z-10'></div>
