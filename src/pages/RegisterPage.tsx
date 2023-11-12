@@ -34,10 +34,10 @@ const RegisterPage = () => {
       event.currentTarget.children[4],
       setPasswordError
     );
-    const confirmPassword = validate(
-      event.currentTarget.children[5],
-      setConfirmPasswordError
-    );
+    // const confirmPassword = validate(
+    //   event.currentTarget.children[5],
+    //   setConfirmPasswordError
+    // );
 
     const photo = `https://devfortest.my.id/uploads/${new Date().getTime()}.png`;
 
