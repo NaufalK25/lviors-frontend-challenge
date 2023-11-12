@@ -2,7 +2,7 @@ export const validate = (
   element: Element,
   setValueError: React.SetStateAction<any>
 ) => {
-  const valueInputDiv = element.firstChild.firstChild as HTMLDivElement;
+  const valueInputDiv = element.firstChild?.firstChild as HTMLDivElement;
   const valueInput = valueInputDiv.firstChild as HTMLInputElement;
   const value = valueInput.value;
 
