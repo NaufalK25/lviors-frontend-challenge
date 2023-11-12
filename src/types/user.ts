@@ -5,8 +5,21 @@ export type User = {
   photo?: string;
 };
 
+export type UserProfile = User & {
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type RegisteredUser = User & {
   password?: string;
+};
+
+export type UpdatedUser = User;
+
+export type PasswordData = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
 };
 
 export type LoggedInUser = {

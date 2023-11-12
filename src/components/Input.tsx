@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { TextInput } from 'flowbite-react';
 
 const Input = ({
   error,
   setError,
   type,
-  field
+  field,
+  value,
+  disabled
 }: {
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   field: string;
+  value?: any;
+  disabled?: boolean;
 }) => {
+  PaymentRequest;
   const [showError, setShowError] = useState(false);
-  const [data, setData] = useState<string | null>(null);
+  const [data, setData] = useState<string | null>(value || null);
 
   const handleInputChange = (event: React.ChangeEvent) => {
     const dataInput = event.currentTarget as HTMLInputElement;
@@ -21,17 +27,17 @@ const Input = ({
       setShowError(true);
     } else {
       setData(dataInput.value);
+
       setShowError(false);
       setError(false);
     }
   };
 
   return (
-    <div
-      className='flex flex-col items-center w-full'
-      id={`input-containe-${field}`}
-    >
-      <input
+    <div className='flex flex-col items-center w-full'>
+      <TextInput
+        color='blue'
+        className='bg-gray-50 disabled:bg-gray-100 w-full'
         type={type}
         placeholder={field
           .split(' ')
@@ -39,8 +45,8 @@ const Input = ({
             char => char.charAt(0).toUpperCase() + char.slice(1, char.length)
           )
           .join(' ')}
-        className='input'
         value={data || ''}
+        disabled={disabled}
         onChange={event => handleInputChange(event)}
       />
       {showError && (
@@ -57,7 +63,7 @@ const Input = ({
           harus diisi
         </small>
       )}
-      {error && (
+      {!showError && error && (
         <small className='text-red-500'>
           *
           {field

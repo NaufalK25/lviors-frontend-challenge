@@ -12,7 +12,7 @@ const NavbarLink = ({
       to={to}
       className={({ isActive }) =>
         `${
-          isActive ? 'bg-teal-300 hover:bg-teal-300 focus:bg-teal-300' : ''
+          isActive ? 'bg-blue-700 hover:bg-blue-700 focus:bg-blue-700' : ''
         } nav-link`
       }
     >

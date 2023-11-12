@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input {
-  @apply border rounded-l-3xl rounded-r-3xl px-4 py-2 outline-gray-300 w-2/3;
-}
-
 .nav-link {
   @apply hover:bg-gray-400 focus:bg-gray-400 rounded-lg p-2 w-full flex justify-center outline-none;
 }

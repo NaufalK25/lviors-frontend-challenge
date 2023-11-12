@@ -1,10 +1,27 @@
-const AuthBtn = ({ text }: { text: string }) => {
+import { Button } from 'flowbite-react';
+
+const AuthBtn = ({
+  text,
+  disabled,
+  handleClick,
+  type
+}: {
+  text: string;
+  disabled?: boolean;
+  handleClick?: () => void;
+  type: 'submit' | 'button' | 'reset' | undefined;
+}) => {
   return (
-    <>
-      <button className='w-2/3 bg-teal-300 rounded-l-3xl rounded-r-3xl px-4 py-2 uppercase outline-none hover:bg-teal-500'>
-        {text}
-      </button>
-    </>
+    <Button
+      type={type}
+      color='blue'
+      pill
+      className='hover:bg-blue-800 focus:ring-4 px-5 py-1.5 dark:hover:bg-blue-700 disabled:hover:bg-blue-700'
+      disabled={disabled}
+      onClick={handleClick}
+    >
+      {text}
+    </Button>
   );
 };
 

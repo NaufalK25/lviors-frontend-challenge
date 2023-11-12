@@ -1,8 +1,10 @@
 import { Image as ImageIcon } from 'react-feather';
+import { FileInput as FBFileInput } from 'flowbite-react';
 
-const FileInput = () => {
+const FileInput = ({ src, disabled }: { src?: string; disabled?: boolean }) => {
   const handlePreviewImageChange = (event: React.FormEvent) => {
-    const fileInput = event.currentTarget.firstChild as HTMLInputElement;
+    const fileInput = event.currentTarget.firstChild?.firstChild
+      ?.firstChild as HTMLInputElement;
     if (fileInput.files) {
       const filePath = URL.createObjectURL(fileInput.files[0]);
 
@@ -11,11 +13,9 @@ const FileInput = () => {
 
       const newImage = document.createElement('img');
       newImage.src = filePath;
-      newImage.alt =
-        fileInput.value.split('\\')[fileInput.value.split('\\').length - 1] ||
-        '-';
-      newImage.width = 100;
-      newImage.height = 100;
+      newImage.alt = 'display-tmp';
+      newImage.width = 150;
+      newImage.height = 150;
       event.currentTarget.appendChild(newImage);
     }
   };
@@ -25,19 +25,27 @@ const FileInput = () => {
       className='flex flex-col items-center w-full gap-y-4'
       onChange={event => handlePreviewImageChange(event)}
     >
-      <input
-        type='file'
-        placeholder='Photo'
-        className='input'
+      <FBFileInput
+        className='w-full'
         accept='.jpg, .jpeg, .png'
+        disabled={disabled}
       />
-      <div className='border border-gray-300 rounded p-4'>
-        <ImageIcon
-          color='gray'
+      {src ? (
+        <img
+          src={src}
+          alt='display-tmp'
           width={100}
           height={100}
         />
-      </div>
+      ) : (
+        <div className='border border-gray-300 rounded p-4'>
+          <ImageIcon
+            color='gray'
+            width={100}
+            height={100}
+          />
+        </div>
+      )}
     </div>
   );
 };

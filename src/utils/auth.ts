@@ -6,7 +6,7 @@ const API_URL = 'https://devfortest.my.id/auth';
 export const register = async (newUser: RegisteredUser) => {
   const response = await axios.post(`${API_URL}/register`, newUser);
 
-  return response;
+  return response.data;
 };
 
 export const login = async (username: string, password: string) => {
@@ -15,7 +15,7 @@ export const login = async (username: string, password: string) => {
     password
   });
 
-  return response;
+  return response.data;
 };
 
 export const logout = async () => {
@@ -29,5 +29,5 @@ export const logout = async () => {
     }
   );
 
-  return response;
+  return response.data;
 };
