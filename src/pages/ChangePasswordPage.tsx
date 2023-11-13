@@ -65,36 +65,34 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <main className='m-auto flex justify-center items-center'>
-      <form
-        onSubmit={event => handleChangePasswordFormSubmit(event)}
-        className='w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
-      >
-        <p className='text-xl'>Detail User</p>
-        <Input
-          error={oldPasswordError}
-          setError={setOldPasswordError}
-          type='password'
-          field='old password'
-        />
-        <Input
-          error={newPasswordError}
-          setError={setNewPasswordError}
-          type='password'
-          field='new password'
-        />
-        <Input
-          error={confirmNewPasswordError}
-          setError={setConfirmNewPasswordError}
-          type='password'
-          field='confirm new password'
-        />
-        <AuthBtn
-          type='submit'
-          text='Update'
-        />
-      </form>
-    </main>
+    <form
+      onSubmit={event => handleChangePasswordFormSubmit(event)}
+      className='md:w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
+    >
+      <p className='text-xl'>Detail User</p>
+      <Input
+        error={oldPasswordError}
+        setError={setOldPasswordError}
+        type='password'
+        field='old password'
+      />
+      <Input
+        error={newPasswordError}
+        setError={setNewPasswordError}
+        type='password'
+        field='new password'
+      />
+      <Input
+        error={confirmNewPasswordError}
+        setError={setConfirmNewPasswordError}
+        type='password'
+        field='confirm new password'
+      />
+      <AuthBtn
+        type='submit'
+        text='Update'
+      />
+    </form>
   );
 };
 

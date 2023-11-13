@@ -1,12 +1,12 @@
+import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavbarLink = ({
-  to,
-  innerHtml
-}: {
+type NavbarLinkProps = {
   to: string;
-  innerHtml: JSX.Element;
-}) => {
+  children: ReactNode;
+};
+
+const NavbarLink: FC<NavbarLinkProps> = ({ to, children }) => {
   return (
     <NavLink
       to={to}
@@ -16,7 +16,7 @@ const NavbarLink = ({
         } nav-link`
       }
     >
-      <div className='py-0.5'>{innerHtml}</div>
+      <div className='py-0.5'>{children}</div>
     </NavLink>
   );
 };

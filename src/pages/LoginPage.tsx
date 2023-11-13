@@ -66,7 +66,7 @@ const LoginPage = () => {
       <main className='flex justify-center items-center h-screen'>
         <form
           onSubmit={event => handleLoginFormSubmit(event)}
-          className='w-[50vw] flex flex-col justify-center items-center border border-blue-700 rounded p-10 gap-y-8'
+          className='md:w-[50vw] flex flex-col justify-center items-center border border-blue-700 rounded p-10 gap-y-8'
         >
           <p className='text-xl'>Login</p>
           <Input

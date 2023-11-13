@@ -3,7 +3,7 @@ import useGuard from '../hooks/useGuard';
 const HomePage = () => {
   useGuard(false);
 
-  return <main></main>;
+  return <></>;
 };
 
 export default HomePage;

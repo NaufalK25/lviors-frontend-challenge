@@ -1,21 +1,16 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { TextInput } from 'flowbite-react';
 
-const Input = ({
-  error,
-  setError,
-  type,
-  field,
-  value,
-  disabled
-}: {
+type InputProps = {
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   field: string;
   value?: any;
   disabled?: boolean;
-}) => {
+};
+
+const Input: FC<InputProps> = ({ error, setError, type, field, value, disabled }) => {
   PaymentRequest;
   const [showError, setShowError] = useState(false);
   const [data, setData] = useState<string | null>(value || null);

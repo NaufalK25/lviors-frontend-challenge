@@ -3,7 +3,7 @@ import useGuard from '../hooks/useGuard';
 const PostPage = () => {
   useGuard(false);
 
-  return <main></main>;
+  return <></>;
 };
 
 export default PostPage;

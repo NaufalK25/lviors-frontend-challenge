@@ -85,56 +85,54 @@ const UserPage = () => {
 
   return (
     userProfile !== null && (
-      <main className='m-auto flex justify-center items-center'>
-        <form
-          onSubmit={event => handleUpdateProfileFormSubmit(event)}
-          className='w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
-        >
-          <p className='text-xl'>Detail User</p>
-          <Input
-            error={nameError}
-            setError={setNameError}
-            field='name'
-            type='text'
-            value={userProfile.name}
+      <form
+        onSubmit={event => handleUpdateProfileFormSubmit(event)}
+        className='md:w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
+      >
+        <p className='text-xl'>Detail User</p>
+        <Input
+          error={nameError}
+          setError={setNameError}
+          field='name'
+          type='text'
+          value={userProfile.name}
+          disabled={formDisabled}
+        />
+        <Input
+          error={usernameError}
+          setError={setUsernameError}
+          field='username'
+          type='text'
+          value={userProfile.username}
+          disabled={formDisabled}
+        />
+        <Input
+          error={emailError}
+          setError={setEmailError}
+          field='email'
+          type='text'
+          value={userProfile.email}
+          disabled={formDisabled}
+        />
+        <FileInput
+          src={userProfile.photo}
+          disabled={formDisabled}
+        />
+        <div className='flex gap-x-4'>
+          <Button
+            pill
+            onClick={event => handleEditBtnClick(event)}
+            className='rounded-btn text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 px-5 py-1.5 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800'
+          >
+            {editBtn}
+          </Button>
+          <AuthBtn
+            type='submit'
+            text='Submit'
             disabled={formDisabled}
           />
-          <Input
-            error={usernameError}
-            setError={setUsernameError}
-            field='username'
-            type='text'
-            value={userProfile.username}
-            disabled={formDisabled}
-          />
-          <Input
-            error={emailError}
-            setError={setEmailError}
-            field='email'
-            type='text'
-            value={userProfile.email}
-            disabled={formDisabled}
-          />
-          <FileInput
-            src={userProfile.photo}
-            disabled={formDisabled}
-          />
-          <div className='flex gap-x-4'>
-            <Button
-              pill
-              onClick={event => handleEditBtnClick(event)}
-              className='rounded-btn text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 px-5 py-1.5 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800'
-            >
-              {editBtn}
-            </Button>
-            <AuthBtn
-              type='submit'
-              text='Submit'
-              disabled={formDisabled}
-            />
-          </div>
-        </form>
-      </main>
+        </div>
+      </form>
     )
   );
 };

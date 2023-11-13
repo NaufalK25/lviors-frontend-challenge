@@ -1,7 +1,10 @@
+import { FC } from 'react';
 import { Image as ImageIcon } from 'react-feather';
 import { FileInput as FBFileInput } from 'flowbite-react';
 
-const FileInput = ({ src, disabled }: { src?: string; disabled?: boolean }) => {
+type FileInputProps = { src?: string; disabled?: boolean };
+
+const FileInput: FC<FileInputProps> = ({ src, disabled }) => {
   const handlePreviewImageChange = (event: React.FormEvent) => {
     const fileInput = event.currentTarget.firstChild?.firstChild
       ?.firstChild as HTMLInputElement;

@@ -81,7 +81,7 @@ const RegisterPage = () => {
       <main className='flex justify-center items-center py-8'>
         <form
           onSubmit={event => handleRegisterFormSubmit(event)}
-          className='w-[50vw] flex flex-col justify-center items-center border border-blue-700 rounded p-10 gap-y-8'
+          className='md:w-[50vw] flex flex-col justify-center items-center border border-blue-700 rounded p-10 gap-y-8'
         >
           <p className='text-xl'>Register</p>
           <Input

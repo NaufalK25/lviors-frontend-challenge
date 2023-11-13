@@ -7,7 +7,7 @@
 }
 
 .nav-link {
-  @apply hover:bg-gray-400 focus:bg-gray-400 rounded-lg p-2 w-full flex justify-center outline-none;
+  @apply hover:bg-gray-400 focus:bg-gray-400 rounded-lg py-2 w-full flex justify-center outline-none;
 }
 
 .rounded-btn {

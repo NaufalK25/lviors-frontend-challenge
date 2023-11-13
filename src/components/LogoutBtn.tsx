@@ -21,7 +21,7 @@ const LogoutBtn = () => {
 
   return (
     <button
-      className='hover:bg-gray-400 focus:bg-gray-400 rounded-lg p-2 outline-none flex items-center justify-center w-full'
+      className='hover:bg-gray-400 focus:bg-gray-400 rounded-lg py-3 outline-none flex items-center justify-center w-full'
       onClick={handleLogoutBtnClick}
     >
       <LogoutIcon height={15} />

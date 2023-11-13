@@ -1,16 +1,14 @@
+import { FC } from 'react';
 import { Button } from 'flowbite-react';
 
-const AuthBtn = ({
-  text,
-  disabled,
-  handleClick,
-  type
-}: {
+type AuthBtnProps = {
   text: string;
   disabled?: boolean;
   handleClick?: () => void;
   type: 'submit' | 'button' | 'reset' | undefined;
-}) => {
+};
+
+const AuthBtn: FC<AuthBtnProps> = ({ text, disabled, handleClick, type }) => {
   return (
     <Button
       type={type}
