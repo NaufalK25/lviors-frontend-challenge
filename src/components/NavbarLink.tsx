@@ -12,7 +12,9 @@ const NavbarLink: FC<NavbarLinkProps> = ({ to, children }) => {
       to={to}
       className={({ isActive }) =>
         `${
-          isActive ? 'bg-blue-700 hover:bg-blue-700 focus:bg-blue-700' : ''
+          isActive
+            ? 'bg-blue-700 hover:bg-blue-700 focus:bg-blue-700 text-white'
+            : ''
         } nav-link`
       }
     >

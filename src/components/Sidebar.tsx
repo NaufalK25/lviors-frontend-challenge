@@ -28,7 +28,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarOpen }) => {
             <p className='py-0.5'>Change Password</p>
           </NavbarLink>
 
-          <NavbarLink to='/Post'>
+          <NavbarLink to='/post'>
             <p className='py-0.5'>Post</p>
           </NavbarLink>
         </div>

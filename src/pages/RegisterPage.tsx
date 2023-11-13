@@ -43,7 +43,8 @@ const RegisterPage = () => {
     //   setConfirmPasswordError
     // );
 
-    const photo = `https://devfortest.my.id/uploads/${new Date().getTime()}.png`;
+    // const photo = event.currentTarget.children[6].firstChild?.firstChild
+    //   ?.firstChild as HTMLInputElement;
 
     try {
       setIsLoading(true);
@@ -53,8 +54,12 @@ const RegisterPage = () => {
         username,
         email,
         password,
-        photo
+        photo: `https://devfortest.my.id/uploads/${new Date().getTime()}.png`
       });
+
+      // if (photo.files) {
+      //   await upload(photo.files[0]);
+      // }
 
       navigate('/login');
       setTimeout(() => {
@@ -83,6 +88,7 @@ const RegisterPage = () => {
         <form
           onSubmit={event => handleRegisterFormSubmit(event)}
           className='md:w-[50vw] flex flex-col justify-center items-center border border-blue-700 rounded p-10 gap-y-8'
+          encType='multipart/form-data'
         >
           <p className='text-xl'>Register</p>
 

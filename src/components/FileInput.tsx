@@ -17,8 +17,10 @@ const FileInput: FC<FileInputProps> = ({ src, disabled }) => {
       const newImage = document.createElement('img');
       newImage.src = filePath;
       newImage.alt = 'display-tmp';
-      newImage.width = 150;
-      newImage.height = 150;
+      newImage.style.border = '1px solid rgb(209 213 219 / 1)';
+      newImage.style.borderRadius = '0.5rem';
+      newImage.style.width = '150px';
+      newImage.style.height = '150px';
       event.currentTarget.appendChild(newImage);
     }
   };
@@ -38,15 +40,16 @@ const FileInput: FC<FileInputProps> = ({ src, disabled }) => {
         <img
           src={src}
           alt='display-tmp'
-          width={100}
-          height={100}
+          width={150}
+          height={150}
+          className='border border-gray-300 rounded-lg text-center'
         />
       ) : (
         <div className='border border-gray-300 rounded p-4'>
           <ImageIcon
             color='gray'
-            width={100}
-            height={100}
+            width={150}
+            height={150}
           />
         </div>
       )}

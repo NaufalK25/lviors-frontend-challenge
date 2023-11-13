@@ -32,7 +32,7 @@ const UserPage = () => {
   const handleEditBtnClick = (event: React.MouseEvent) => {
     event.preventDefault();
     setEditBtn(formDisabled ? 'Cancel' : 'Edit');
-    setFormDisabled(prevState => !prevState);
+    setFormDisabled(!formDisabled);
   };
 
   const handleUpdateProfileFormSubmit = async (event: React.FormEvent) => {
@@ -45,7 +45,10 @@ const UserPage = () => {
       setUsernameError
     );
     const email = validate(event.currentTarget.children[3], setEmailError);
+    // const photo = event.currentTarget.children[4].firstChild?.firstChild
+    // ?.firstChild as HTMLInputElement;
 
+    // if (photo.files && !photo.files.length) {
     if (
       userProfile &&
       name === userProfile.name &&
@@ -57,6 +60,7 @@ const UserPage = () => {
       setEditBtn('Edit');
       return;
     }
+    // }
 
     try {
       setIsLoading(true);
@@ -65,13 +69,22 @@ const UserPage = () => {
         name,
         username,
         email,
+        // photo: photo.files
+        //   ? `https://devfortest.my.id/uploads/${new Date().getTime()}.png`
+        //   : userProfile?.photo
         photo: userProfile ? userProfile.photo : ''
       });
+
+      // if (photo.files) {
+      //   await upload(photo.files[0]);
+      // }
+
       createSuccessToast('Successfully update user!');
     } catch (err) {
       if (err) {
         const axiosError = err as AxiosError;
         if (axiosError.response) {
+          console.log(axiosError.response);
           const axiosErrorData = axiosError.response.data as ErrorData;
           createErrorToast(axiosErrorData.message.split(', ')[0]);
         }
@@ -88,6 +101,7 @@ const UserPage = () => {
       <form
         onSubmit={event => handleUpdateProfileFormSubmit(event)}
         className='md:w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
+        encType='multipart/form-data'
       >
         <p className='text-xl'>Detail User</p>
 

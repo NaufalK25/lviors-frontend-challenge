@@ -18,7 +18,7 @@ const Layout = () => {
   return (
     <>
       <ToastContainer />
-      
+
       <div className='relative'>
         <Loading isLoading={isLoading} />
 
@@ -28,6 +28,7 @@ const Layout = () => {
           className='inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
         >
           <span className='sr-only'>Open sidebar</span>
+
           <MenuIcon />
         </button>
 

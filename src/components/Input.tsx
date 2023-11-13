@@ -49,6 +49,7 @@ const Input: FC<InputProps> = ({
           .join(' ')}
         value={data || ''}
         disabled={disabled}
+        autoComplete={`${type !== 'password'}`}
         onChange={event => handleInputChange(event)}
       />
 
