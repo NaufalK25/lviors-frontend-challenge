@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Menu as MenuIcon } from 'react-feather';
 import { ToastContainer } from 'react-toastify';
+import Loading from './Loading';
 import Sidebar from './Sidebar';
 
 export type OutletContext = React.Dispatch<React.SetStateAction<boolean>>;
 
 const Layout = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleToggleSidebar = () => {
@@ -17,10 +18,9 @@ const Layout = () => {
   return (
     <>
       <ToastContainer />
-      <div className='relative flex'>
-        {loading && (
-          <div className='bg-blue-700 h-2 loading absolute top-0 z-50'></div>
-        )}
+      
+      <div className='relative'>
+        <Loading isLoading={isLoading} />
 
         <button
           onClick={handleToggleSidebar}
@@ -30,13 +30,15 @@ const Layout = () => {
           <span className='sr-only'>Open sidebar</span>
           <MenuIcon />
         </button>
+
         <Sidebar isSidebarOpen={isSidebarOpen} />
       </div>
+
       <main
         onClick={handleToggleSidebar}
-        className='flex justify-center items-center flex-grow'
+        className='p-4 sm:ml-64 flex flex-grow justify-center'
       >
-        <Outlet context={setLoading satisfies OutletContext} />
+        <Outlet context={setIsLoading satisfies OutletContext} />
       </main>
     </>
   );

@@ -13,7 +13,7 @@ import { ErrorData } from '../types/error';
 const ChangePasswordPage = () => {
   useGuard(false);
 
-  const setLoading = useOutletContext<OutletContext>();
+  const setIsLoading = useOutletContext<OutletContext>();
 
   const [oldPasswordError, setOldPasswordError] = useState(false);
   const [newPasswordError, setNewPasswordError] = useState(false);
@@ -38,7 +38,7 @@ const ChangePasswordPage = () => {
     );
 
     try {
-      setLoading(true);
+      setIsLoading(true);
 
       await changePassword({
         oldPassword,
@@ -60,7 +60,7 @@ const ChangePasswordPage = () => {
         }
       }
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -69,25 +69,29 @@ const ChangePasswordPage = () => {
       onSubmit={event => handleChangePasswordFormSubmit(event)}
       className='md:w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
     >
-      <p className='text-xl'>Detail User</p>
+      <p className='text-xl'>Change Password</p>
+
       <Input
         error={oldPasswordError}
         setError={setOldPasswordError}
         type='password'
         field='old password'
       />
+
       <Input
         error={newPasswordError}
         setError={setNewPasswordError}
         type='password'
         field='new password'
       />
+
       <Input
         error={confirmNewPasswordError}
         setError={setConfirmNewPasswordError}
         type='password'
         field='confirm new password'
       />
+
       <AuthBtn
         type='submit'
         text='Update'

@@ -16,7 +16,7 @@ const NavbarLink: FC<NavbarLinkProps> = ({ to, children }) => {
         } nav-link`
       }
     >
-      <div className='py-0.5'>{children}</div>
+      {children}
     </NavLink>
   );
 };

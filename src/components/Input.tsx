@@ -10,7 +10,14 @@ type InputProps = {
   disabled?: boolean;
 };
 
-const Input: FC<InputProps> = ({ error, setError, type, field, value, disabled }) => {
+const Input: FC<InputProps> = ({
+  error,
+  setError,
+  type,
+  field,
+  value,
+  disabled
+}) => {
   PaymentRequest;
   const [showError, setShowError] = useState(false);
   const [data, setData] = useState<string | null>(value || null);
@@ -44,35 +51,32 @@ const Input: FC<InputProps> = ({ error, setError, type, field, value, disabled }
         disabled={disabled}
         onChange={event => handleInputChange(event)}
       />
-      {showError && (
-        <small className='text-red-500'>
-          *
-          {field
-            .split(' ')
-            .map(
-              word =>
-                word.charAt(0).toUpperCase() +
-                word.slice(1, word.length).toLowerCase()
-            )
-            .join('')}{' '}
-          harus diisi
-        </small>
-      )}
-      {!showError && error && (
-        <small className='text-red-500'>
-          *
-          {field
-            .split(' ')
-            .map(
-              word =>
-                word.charAt(0).toUpperCase() +
-                word.slice(1, word.length).toLowerCase()
-            )
-            .join('')}{' '}
-          harus diisi
-        </small>
-      )}
+
+      {showError && <ErrorMessage field={field} />}
+
+      {!showError && error && <ErrorMessage field={field} />}
     </div>
+  );
+};
+
+type ErrorMessageProps = {
+  field: string;
+};
+
+const ErrorMessage: FC<ErrorMessageProps> = ({ field }) => {
+  return (
+    <small className='text-red-500'>
+      *
+      {field
+        .split(' ')
+        .map(
+          word =>
+            word.charAt(0).toUpperCase() +
+            word.slice(1, word.length).toLowerCase()
+        )
+        .join('')}{' '}
+      harus diisi
+    </small>
   );
 };
 

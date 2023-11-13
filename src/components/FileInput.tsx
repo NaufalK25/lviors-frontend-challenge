@@ -33,6 +33,7 @@ const FileInput: FC<FileInputProps> = ({ src, disabled }) => {
         accept='.jpg, .jpeg, .png'
         disabled={disabled}
       />
+
       {src ? (
         <img
           src={src}

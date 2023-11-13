@@ -25,6 +25,7 @@ const LogoutBtn = () => {
       onClick={handleLogoutBtnClick}
     >
       <LogoutIcon height={15} />
+
       <p>Logout</p>
     </button>
   );

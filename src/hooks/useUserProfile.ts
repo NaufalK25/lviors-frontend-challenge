@@ -5,7 +5,7 @@ import { UserProfile } from '../types/user';
 import { getProfile } from '../utils/user';
 
 const useUserProfile = (
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const useUserProfile = (
   useEffect(() => {
     const getProfileData = async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const profileData = await getProfile();
         setUserProfile(profileData.data);
       } catch (err) {
@@ -29,12 +29,12 @@ const useUserProfile = (
           }
         }
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     getProfileData();
-  }, [setLoading, navigate]);
+  }, [setIsLoading, navigate]);
 
   return userProfile;
 };

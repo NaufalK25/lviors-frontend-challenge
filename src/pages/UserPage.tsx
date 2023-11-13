@@ -20,8 +20,8 @@ import { ErrorData } from '../types/error';
 const UserPage = () => {
   useGuard(false);
 
-  const setLoading = useOutletContext<OutletContext>();
-  const userProfile = useUserProfile(setLoading);
+  const setIsLoading = useOutletContext<OutletContext>();
+  const userProfile = useUserProfile(setIsLoading);
 
   const [nameError, setNameError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
@@ -59,7 +59,7 @@ const UserPage = () => {
     }
 
     try {
-      setLoading(true);
+      setIsLoading(true);
 
       await updateProfile({
         name,
@@ -77,7 +77,7 @@ const UserPage = () => {
         }
       }
     } finally {
-      setLoading(false);
+      setIsLoading(false);
       setFormDisabled(true);
       setEditBtn('Edit');
     }
@@ -90,6 +90,7 @@ const UserPage = () => {
         className='md:w-[50vw] flex flex-col justify-center items-center p-10 gap-y-8'
       >
         <p className='text-xl'>Detail User</p>
+
         <Input
           error={nameError}
           setError={setNameError}
@@ -98,6 +99,7 @@ const UserPage = () => {
           value={userProfile.name}
           disabled={formDisabled}
         />
+
         <Input
           error={usernameError}
           setError={setUsernameError}
@@ -106,6 +108,7 @@ const UserPage = () => {
           value={userProfile.username}
           disabled={formDisabled}
         />
+
         <Input
           error={emailError}
           setError={setEmailError}
@@ -114,10 +117,12 @@ const UserPage = () => {
           value={userProfile.email}
           disabled={formDisabled}
         />
+
         <FileInput
           src={userProfile.photo}
           disabled={formDisabled}
         />
+
         <div className='flex gap-x-4'>
           <Button
             pill
@@ -126,6 +131,7 @@ const UserPage = () => {
           >
             {editBtn}
           </Button>
+
           <AuthBtn
             type='submit'
             text='Submit'

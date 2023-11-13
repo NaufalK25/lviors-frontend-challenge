@@ -19,16 +19,20 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarOpen }) => {
           <NavbarLink to='/'>
             <HomeIcon />
           </NavbarLink>
+
           <NavbarLink to='/user'>
             <p className='py-0.5'>User</p>
           </NavbarLink>
+
           <NavbarLink to='/change-password'>
             <p className='py-0.5'>Change Password</p>
           </NavbarLink>
+
           <NavbarLink to='/Post'>
             <p className='py-0.5'>Post</p>
           </NavbarLink>
         </div>
+
         <div className='px-2'>
           <LogoutBtn />
         </div>
